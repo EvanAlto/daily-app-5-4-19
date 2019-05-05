@@ -1,33 +1,141 @@
-.App {
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  background-color: #fefefe;
+  border-radius: 25px;
+  margin: 20px;
+  padding: 60px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,.25);
+
+  > * {
+    margin: 20px 0px;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    width: 80%;
+    padding: 15px 20px;
+    color: #aeaeae;
+    background-color: transparent;
+  }
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.subtext,
+.header {
+  color: #6e6e6e;
+  display: flex;
+  flex-direction: column;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.subtext {
+  font-size: 10pt;
+  font-weight: 200;
+}
+
+.input-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-radius: 50px;
+  border: 2px solid #dedede;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    opacity: 0;
+    font-size: 10pt;
+    position: absolute;
+    color: #fefefe;
+    top: calc(50% - .5rem);
+    content: 'Your Email Was Received!';
+    z-index: -20;
+  }
+
+  &.sent {
+    overflow: visible;
+    transition: all ease .3s;
+
+    &::before {
+      opacity: 1;
+      transition: all ease .3s;
+      z-index: 20;
+    }
+  }
 }
 
-.App-link {
-  color: #61dafb;
+.icon {
+  position: absolute;
+  color: #fefefe;
+  right: 20px;
+  top: 100%;
+  background-color: #b478bb;
+  border-radius: 50%;
+  padding: 11px;
+  cursor: pointer;
+  transition: all ease .3s, color 0s;
+
+  &.show {
+  top: calc(50% - (1rem + 3px));
+  }
+
+  &.sent {
+    color: transparent;
+    top: calc(50% - (1rem + 7.5px));
+    width: 100%;
+    right: -2px;
+    border-radius: 50px;
+    padding: 15px 2px 16px 2px;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.repeat {
+  opacity: 0;
+  color: #6e6e6e;
+  position: absolute;
+  bottom: 0px;
+  right: calc(1rem + 5px);
+  font-size: 2rem;
+  background-color: #fefefe;
+  padding: 5px;
+  border-radius: 50%;
+  box-shadow: 0px 5px 10px rgba(0,0,0,.25);
+  cursor: pointer;
+
+  &.sent {
+    opacity: 1;
+    transition: all ease .3s;
   }
 }
+
+.exit {
+  transition: all 0s;
+}
+
+@media screen and (max-width: 500px) {
+  .input-container{ 
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .app {
+    width: 350px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .app input {
+    width: 250px;
+  }
+}
+
+
